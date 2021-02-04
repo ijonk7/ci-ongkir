@@ -15,17 +15,17 @@
 
 <div class="container-fluid">
 <br>
-  <h2>Cek Ongkir</h2>
+  <h2>Check Shipping Costs</h2>
   <?= form_open('') ?>
   <!-- <form action="/action_page.php"> -->
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-              <label for="kota_asal">Kota Asal:</label>
+              <label for="kota_asal">City of Origin:</label>
               <select class="browser-default custom-select" name="kota_asal" required>
 
                 <?php if(empty($input['kota_asal'])): ?>
-                  <option value="" selected>Kota asal pengiriman</option>
+                  <option value="" selected>City of origin of delivery</option>
                 <?php endif; ?>
 
                 <?php foreach($daftar_kota as $kota): ?>
@@ -41,19 +41,19 @@
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-              <label for="berat">Berat Kiriman (Gram):</label>
-              <input type="number" class="form-control" id="berat" value="<?= $input['berat'] ?>" placeholder="Berat kiriman dalam satuan gram" name="berat" required>
+              <label for="berat">Shipping Weight (Gram):</label>
+              <input type="number" class="form-control" id="berat" value="<?= $input['berat'] ?>" placeholder="The shipment weight is in grams" name="berat" required>
             </div>        
         </div>
     </div>
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-              <label for="kota_tujuan">Kota Tujuan:</label>
+              <label for="kota_tujuan">Destination City:</label>
               <select class="browser-default custom-select" name="kota_tujuan" required>
 
                 <?php if(empty($input['kota_tujuan'])): ?>
-                  <option value="" selected>Kota tujuan pengiriman</option>
+                  <option value="" selected>City of delivery destination</option>
                 <?php endif; ?>
 
                 <?php foreach($daftar_kota as $kota): ?>
@@ -69,11 +69,11 @@
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-              <label for="kurir">Pilih Kurir:</label>
+              <label for="kurir">Select Courier:</label>
               <select class="browser-default custom-select" name="kurir" required>
 
                 <?php if(empty($input['kurir'])): ?>
-                  <option value="" selected>Pilih Kurir</option>
+                  <option value="" selected>Select Courier</option>
                   <option value="jne">JNE</option>
                   <option value="tiki">TIKI</option>
                   <option value="pos">POS</option>
@@ -87,7 +87,7 @@
             </div>        
         </div>
     </div>
-    <button type="submit" class="btn btn-danger btn-block">CARI</button>
+    <button type="submit" class="btn btn-danger btn-block">SEARCH</button>
     <?= form_close() ?>
 </div>
 </div>
@@ -96,14 +96,14 @@
 
 <?php if(!empty($daftar_ongkir)): ?>
 <div class="container">
-<h2>Nama Kurir: <?= $daftar_ongkir[0]['name'] ?></h2>
+<h2>Courier Name: <?= $daftar_ongkir[0]['name'] ?></h2>
 <?php foreach($daftar_ongkir[0]['costs'] as $deskripsi_ongkir): ?>
     <ul>
-        <li><strong>Jenis Pengiriman: <?= $deskripsi_ongkir['service'] ?> (<?= $deskripsi_ongkir['description'] ?>)</strong></li>
+        <li><strong>Type of Delivery: <?= $deskripsi_ongkir['service'] ?> (<?= $deskripsi_ongkir['description'] ?>)</strong></li>
         <?php foreach($deskripsi_ongkir['cost'] as $ongkir_detail): ?>
-            Harga: Rp <?= number_format($ongkir_detail['value'],0,",",".") ?>
-            <br>Estimasi: <?= $ongkir_detail['etd'] ?> Hari
-            <br>Catatan: <?= $ongkir_detail['note'] ?>
+            Price: Rp <?= number_format($ongkir_detail['value'],0,",",".") ?>
+            <br>Estimate: <?= $ongkir_detail['etd'] ?> Hari
+            <br>Note: <?= $ongkir_detail['note'] ?>
         <?php endforeach; ?>
     </ul>
 <?php endforeach; ?>
