@@ -15,17 +15,18 @@
 
 <div class="container-fluid">
 <br>
-  <h2>Check Shipping Costs</h2>
+  <h2 style="text-align: center;">Check Shipping Costs</h2>
+  <br>
   <?= form_open('') ?>
   <!-- <form action="/action_page.php"> -->
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-              <label for="kota_asal">City of Origin:</label>
+              <label for="kota_asal">Origin Shipment:</label>
               <select class="browser-default custom-select" name="kota_asal" required>
 
                 <?php if(empty($input['kota_asal'])): ?>
-                  <option value="" selected>City of origin of delivery</option>
+                  <option value="" selected>Origin</option>
                 <?php endif; ?>
 
                 <?php foreach($daftar_kota as $kota): ?>
@@ -41,19 +42,11 @@
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-              <label for="berat">Shipping Weight (Gram):</label>
-              <input type="number" class="form-control" id="berat" value="<?= $input['berat'] ?>" placeholder="The shipment weight is in grams" name="berat" required>
-            </div>        
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="form-group">
-              <label for="kota_tujuan">Destination City:</label>
+              <label for="kota_tujuan">Destination Shipment:</label>
               <select class="browser-default custom-select" name="kota_tujuan" required>
 
                 <?php if(empty($input['kota_tujuan'])): ?>
-                  <option value="" selected>City of delivery destination</option>
+                  <option value="" selected>Destination</option>
                 <?php endif; ?>
 
                 <?php foreach($daftar_kota as $kota): ?>
@@ -63,13 +56,20 @@
                     <option value="<?= $kota['city_id'] ?>"><?= $kota['city_name'] ?></option>
                   <?php endif; ?>
                 <?php endforeach; ?>
-
               </select>
+            </div>        
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+              <label for="berat">Weight (Gram):</label>
+              <input type="number" class="form-control" id="berat" value="<?= !empty($input['berat']) ? $input['berat'] : 1000 ?>" placeholder="The shipment weight is in grams" name="berat" required>              
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-              <label for="kurir">Select Courier:</label>
+              <label for="kurir">Courier:</label>
               <select class="browser-default custom-select" name="kurir" required>
 
                 <?php if(empty($input['kurir'])): ?>
@@ -87,7 +87,7 @@
             </div>        
         </div>
     </div>
-    <button type="submit" class="btn btn-danger btn-block">SEARCH</button>
+    <button type="submit" class="btn btn-danger btn-block">CHECK</button>
     <?= form_close() ?>
 </div>
 </div>
