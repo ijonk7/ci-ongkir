@@ -9,7 +9,8 @@ class Ongkir_model extends CI_model
     {
         parent::__construct();
         $this->_client = new Client([
-            'base_uri' => 'https://api.rajaongkir.com/starter/'
+            'base_uri' => 'https://api.rajaongkir.com/starter/',
+            'verify' => false
         ]);
     }
 
